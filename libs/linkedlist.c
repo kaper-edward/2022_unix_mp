@@ -126,6 +126,7 @@ Node* append(size_t n, char new_data[n])
 
 Node* delete_node(Node* cur_node)
 {
+    Node* result = NULL;
     if(cur_node == NULL)
         return NULL;
 
@@ -134,15 +135,18 @@ Node* delete_node(Node* cur_node)
     else
         cur_node->prev->next = cur_node->next;
     
-    if(cur_node == _tail)
+    if(cur_node == _tail){
         _tail = _tail->prev;
-    else
+        result = _tail;
+    }else{
         cur_node->next->prev = cur_node->prev;
+        result = cur_node->next;
+    }
 
     free(cur_node->data);
     free(cur_node);
 
-    return NULL;
+    return result;
 }
 
 Node* delete(char* data)
