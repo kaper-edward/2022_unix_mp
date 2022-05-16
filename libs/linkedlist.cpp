@@ -15,7 +15,7 @@ size_t size()
 {
     Node* it = NULL;
     size_t count = 0;
-    if(_head == NULL) return 0;
+    if(empty()) return 0;
     
     it = _head;
     count = 1;
@@ -40,7 +40,7 @@ void print_file(FILE* stream)
 void clear()
 {
     Node* it = NULL;
-    if(_tail == NULL) return;
+    if(empty()) return;
 
     it = _tail;
     while(it != _head){
