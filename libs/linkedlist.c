@@ -4,6 +4,7 @@
 
 static Node* _head = NULL;
 static Node* _tail = NULL;
+static Node* _cur_node = NULL;
 
 bool empty()
 {
@@ -52,6 +53,7 @@ void clear()
 
     _tail = NULL;
     _head = NULL;
+    _cur_node = NULL;
 }
 
 static Node* CreateNode(size_t n, char new_data[n])
@@ -134,22 +136,22 @@ Node* get_node(size_t index)
 
 Node* first()
 {
-    return _head;
+    return _cur_node = _head;
 }
 
 Node* last()
 {
-    return _tail;
+    return _cur_node = _tail;
 }
 
 Node* next()
 {
-    //TODO: IMPL
-    return NULL;
+    if(_cur_node == NULL) return NULL;
+    return _cur_node = _cur_node->next;
 }
 
 Node* prev()
 {
-    //TODO: IMPL
-    return NULL;
+    if(_cur_node == NULL) return NULL;
+    return _cur_node = _cur_node->prev;
 }
