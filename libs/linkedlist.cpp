@@ -6,8 +6,7 @@ static Node* _cur_node = NULL;
 
 bool empty()
 {
-    //TODO: IMPL
-    return true;
+    return _head == NULL;
 }
 
 size_t size()
