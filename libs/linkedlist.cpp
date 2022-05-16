@@ -55,8 +55,14 @@ void clear()
 
 Node* append_left(size_t n, char new_data[n])
 {
-    //TODO: IMPL
-    return NULL;
+    Node* new_node = (Node*)malloc(sizeof(Node));
+    new_node->next = _head;
+    new_node->data = (char*)malloc(sizeof(char) * n);
+    strncpy(new_node->data, new_data, n);
+    new_node->prev = NULL;
+    _head = new_node;
+    if(_tail == NULL) _tail = new_node;
+    return new_node;
 }
 
 Node* insert_after(Node* cur_node, Node* new_node)
