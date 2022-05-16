@@ -53,6 +53,7 @@ void clear()
 
     _tail = NULL;
     _head = NULL;
+    _cur_node = NULL;
 }
 
 static Node* CreateNode(size_t n, char new_data[n])
