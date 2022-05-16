@@ -11,8 +11,18 @@ bool empty()
 
 size_t size()
 {
-    //TODO: IMPL
-    return 0;
+    Node* it = NULL;
+    size_t count = 0;
+    if(_head == NULL) return 0;
+    
+    it = _head;
+    count = 1;
+    while(it != _tail){
+        ++count;
+        it = it->next;
+    }
+
+    return count;
 }
 
 void print()
