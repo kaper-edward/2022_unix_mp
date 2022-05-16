@@ -1,4 +1,6 @@
 #include <linkedlist.h>
+#include <stdlib.h>
+#include <string.h>
 
 static Node* _head = NULL;
 static Node* _tail = NULL;
@@ -53,15 +55,25 @@ void clear()
     _head = NULL;
 }
 
-Node* append_left(size_t n, char new_data[n])
+static Node* createNode(size_t n, char new_data[n])
 {
     Node* new_node = (Node*)malloc(sizeof(Node));
-    new_node->next = _head;
+    new_node->next = NULL;
     new_node->data = (char*)malloc(sizeof(char) * n);
     strncpy(new_node->data, new_data, n);
     new_node->prev = NULL;
+}
+
+Node* append_left(size_t n, char new_data[n])
+{
+    Node* new_node = createNode(n, new_data);
+    if(empty()){
+        _tail = new_node;
+    }else{
+        _head->prev = new_node;
+        new_node->next = _head;
+    }
     _head = new_node;
-    if(_tail == NULL) _tail = new_node;
     return new_node;
 }
 
