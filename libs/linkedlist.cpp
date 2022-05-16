@@ -55,7 +55,7 @@ void clear()
     _head = NULL;
 }
 
-static Node* createNode(size_t n, char new_data[n])
+static Node* CreateNode(size_t n, char new_data[n])
 {
     Node* new_node = (Node*)malloc(sizeof(Node));
     new_node->next = NULL;
@@ -66,7 +66,7 @@ static Node* createNode(size_t n, char new_data[n])
 
 Node* append_left(size_t n, char new_data[n])
 {
-    Node* new_node = createNode(n, new_data);
+    Node* new_node = CreateNode(n, new_data);
     if(empty()){
         _tail = new_node;
     }else{
