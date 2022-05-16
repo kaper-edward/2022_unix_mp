@@ -4,7 +4,6 @@
 
 static Node* _head = NULL;
 static Node* _tail = NULL;
-static Node* _cur_node = NULL;
 
 bool empty()
 {
@@ -53,7 +52,6 @@ void clear()
 
     _tail = NULL;
     _head = NULL;
-    _cur_node = NULL;
 }
 
 static Node* CreateNode(size_t n, char new_data[n])
@@ -111,9 +109,9 @@ Node* append(size_t n, char new_data[n])
     if(empty()) {
         _head = new_node;
         _tail = new_node;
-        return _cur_node = new_node;
+        return new_node;
     }
-    return _cur_node = insert_after(_tail, new_node);
+    return insert_after(_tail, new_node);
 }
 
 Node* delete_node(Node* cur_node)
