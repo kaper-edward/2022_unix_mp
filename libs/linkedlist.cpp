@@ -103,8 +103,7 @@ Node* insert_after(Node* cur_node, Node* new_node)
 
 Node* append(size_t n, char new_data[n])
 {
-    //TODO: IMPL
-    return NULL;
+    return insert_after(_head, CreateNode(n, new_data));
 }
 
 Node* delete_node(Node* cur_node)
