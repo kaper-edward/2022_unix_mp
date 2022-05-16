@@ -79,8 +79,26 @@ Node* append_left(size_t n, char new_data[n])
 
 Node* insert_after(Node* cur_node, Node* new_node)
 {
-    //TODO: IMPL
-    return NULL;
+    if(cur_node == NULL || new_node == NULL)
+        return NULL;
+
+    if(new_node == _head){
+        _head = _head->next;
+        _head->prev = NULL;
+    }else if(new_node == _tail){
+        _tail = _tail->prev;
+        _tail->next = NULL;
+    }else if(new_node->next != NULL){
+        new_node->next->prev = new_node->prev;
+        new_node->prev->next = new_node->next;
+    }
+
+    if(cur_node->next != NULL)
+        cur_node->next->prev = new_node;
+    new_node->next = cur_node->next;
+    new_node->prev = cur_node;
+    cur_node->next = new_node;
+    return new_node;
 }
 
 Node* append(size_t n, char new_data[n])
