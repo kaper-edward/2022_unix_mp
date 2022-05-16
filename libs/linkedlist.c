@@ -118,7 +118,22 @@ Node* append(size_t n, char new_data[n])
 
 Node* delete_node(Node* cur_node)
 {
-    //TODO: IMPL
+    if(cur_node == NULL)
+        return NULL;
+
+    if(cur_node == _head)
+        _head = _head->next;
+    else
+        cur_node->prev->next = cur_node->next;
+    
+    if(cur_node == _tail)
+        _tail = _tail->prev;
+    else
+        cur_node->next->prev = cur_node->prev;
+
+    free(cur_node->data);
+    free(cur_node);
+
     return NULL;
 }
 
