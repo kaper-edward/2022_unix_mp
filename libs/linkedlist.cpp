@@ -37,7 +37,20 @@ void print_file(FILE* stream)
 
 void clear()
 {
-    //TODO: IMPL
+    Node* it = NULL;
+    if(_tail == NULL) return;
+
+    it = _tail;
+    while(it != _head){
+        it = it->prev;
+        free(it->next->data);
+        free(it->next);
+    }
+    free(it->data);
+    free(it);
+
+    _tail = NULL;
+    _head = NULL;
 }
 
 Node* append_left(size_t n, char new_data[n])
