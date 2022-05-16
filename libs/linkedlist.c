@@ -139,8 +139,7 @@ Node* first()
 
 Node* last()
 {
-    //TODO: IMPL
-    return NULL;
+    return _tail;
 }
 
 Node* next()
