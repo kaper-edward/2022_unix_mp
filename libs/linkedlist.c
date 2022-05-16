@@ -139,7 +139,13 @@ Node* delete_node(Node* cur_node)
 
 Node* delete(char* data)
 {
-    //TODO: IMPL
+    Node* it = _head;
+    while(it != NULL){
+        Node* cur = it;
+        it = it->next;
+        if(strcmp(cur->data, data) == 0)
+            delete_node(cur);
+    }
     return NULL;
 }
 
