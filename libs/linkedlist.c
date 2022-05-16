@@ -170,11 +170,13 @@ Node* last()
 Node* next()
 {
     if(_cur_node == NULL) return NULL;
+    if(_cur_node->next == NULL) return _cur_node;
     return _cur_node = _cur_node->next;
 }
 
 Node* prev()
 {
     if(_cur_node == NULL) return NULL;
+    if(_cur_node->prev == NULL) return _cur_node;
     return _cur_node = _cur_node->prev;
 }
