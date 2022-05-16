@@ -29,12 +29,20 @@ size_t size()
 
 void print()
 {
-    //TODO: IMPL
+    print_file(stdin);
 }
 
 void print_file(FILE* stream)
 {
-    //TODO: IMPL
+    Node* it = _head;
+    fprintf(stream, "LinkedList [");
+    
+    while(it != NULL){
+        fprintf(stream, " %s", it->data);
+        it = it->next;
+    }
+
+    fputs(stream, " ]\n");
 }
 
 void clear()
