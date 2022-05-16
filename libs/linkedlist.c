@@ -134,8 +134,7 @@ Node* get_node(size_t index)
 
 Node* first()
 {
-    //TODO: IMPL
-    return NULL;
+    return _head;
 }
 
 Node* last()
