@@ -1,8 +1,9 @@
 #ifndef INCLUDE_LINKED_LIST_H
 #define INCLUDE_LINKED_LIST_H
 
-#include "node.h"
+#include "./node.h"
 #include <stdio.h>
+#include <stdbool.h>
 
 bool empty();
 size_t size();
