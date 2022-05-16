@@ -100,6 +100,8 @@ Node* insert_after(Node* cur_node, Node* new_node)
     new_node->next = cur_node->next;
     new_node->prev = cur_node;
     cur_node->next = new_node;
+    if(cur_node == _tail)
+        _tail = new_node;
     return new_node;
 }
 
