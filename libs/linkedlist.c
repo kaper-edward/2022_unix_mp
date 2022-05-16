@@ -130,8 +130,10 @@ Node* delete(char* data)
 
 Node* get_node(size_t index)
 {
-    //TODO: IMPL
-    return NULL;
+    Node* it = _head;
+    while(it != NULL && index--)
+        it = it->next;
+    return it;
 }
 
 Node* first()
