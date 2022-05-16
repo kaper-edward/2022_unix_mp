@@ -107,7 +107,13 @@ Node* insert_after(Node* cur_node, Node* new_node)
 
 Node* append(size_t n, char new_data[n])
 {
-    return insert_after(_head, CreateNode(n, new_data));
+    Node* new_node = CreateNode(n, new_data);
+    if(empty()) {
+        _head = new_node;
+        _tail = new_node;
+        return _cur_node = new_node;
+    }
+    return _cur_node = insert_after(_tail, new_node);
 }
 
 Node* delete_node(Node* cur_node)
