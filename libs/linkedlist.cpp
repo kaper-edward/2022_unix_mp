@@ -62,6 +62,7 @@ static Node* CreateNode(size_t n, char new_data[n])
     new_node->data = (char*)malloc(sizeof(char) * n);
     strncpy(new_node->data, new_data, n);
     new_node->prev = NULL;
+    return new_node;
 }
 
 Node* append_left(size_t n, char new_data[n])
