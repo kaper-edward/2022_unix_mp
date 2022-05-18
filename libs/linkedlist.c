@@ -86,6 +86,7 @@ static Node* CreateNode(size_t n, char new_data[n])
 Node* append_left(size_t n, char new_data[n])
 {
     Node* new_node = CreateNode(n, new_data);
+    if(new_node == NULL) return NULL;
     if(empty()){
         _tail = new_node;
     }else{
