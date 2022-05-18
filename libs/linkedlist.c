@@ -67,8 +67,17 @@ void clear()
 static Node* CreateNode(size_t n, char new_data[n])
 {
     Node* new_node = (Node*)malloc(sizeof(Node));
+    if(new_node == NULL)
+        return NULL;
+    
     new_node->next = NULL;
     new_node->data = (char*)malloc(sizeof(char) * n);
+
+    if(new_node->data == NULL){
+        free(new_node);
+        return NULL;
+    }
+
     strncpy(new_node->data, new_data, n);
     new_node->prev = NULL;
     return new_node;
