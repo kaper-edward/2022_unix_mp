@@ -94,12 +94,12 @@ Node* append_left(size_t n, char new_data[n])
         new_node->next = _head;
     }
     _head = new_node;
-    return new_node;
+    return _cur_node = new_node;
 }
 
 Node* insert_after(Node* cur_node, Node* new_node)
 {
-    if(cur_node == NULL || new_node == NULL)
+    if(cur_node == NULL || new_node == NULL || cur_node == new_node)
         return NULL;
 
     if(new_node == _head){
@@ -129,7 +129,7 @@ Node* append(size_t n, char new_data[n])
     if(empty()) {
         _head = new_node;
         _tail = new_node;
-        return new_node;
+        return _cur_node = new_node;
     }
     return insert_after(_tail, new_node);
 }
@@ -165,8 +165,12 @@ Node* delete(char* data)
     while(it != NULL){
         Node* cur = it;
         it = it->next;
-        if(strcmp(cur->data, data) == 0)
-            delete_node(cur);
+        if(strcmp(cur->data, data) == 0) {
+            if(_cur_node == cur)
+                _cur_node = delete_node(cur);
+            else
+                delete_node(cur);
+        }
     }
     return NULL;
 }
