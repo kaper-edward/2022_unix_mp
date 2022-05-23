@@ -1,3 +1,4 @@
+
 #include "../include/textfilewriter.h"
 #include <stdlib.h>
 #include <string.h>
@@ -30,4 +31,3 @@ void write_file(char* file_name){
         fclose(fp);
     }    
 }
-
