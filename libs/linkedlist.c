@@ -29,7 +29,7 @@ size_t size()
 
 void print()
 {
-    print_file(stdin);
+    print_file(stdout);
 }
 
 void print_file(FILE* stream)
@@ -42,7 +42,7 @@ void print_file(FILE* stream)
         it = it->next;
     }
 
-    fputs(stream, " ]\n");
+    fputs(" ]\n", stream);
 }
 
 void clear()
