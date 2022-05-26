@@ -7,7 +7,15 @@ void create_music_titles(FILE* stream){
 }
 
 void read_file(char* file_name){
-
+    FILE *fp;
+    char buffer[MAX_TITLE_SIZE + 1];
+ 
+    if ((fp = fopen(file_name, "r+")) != NULL) {
+        memset(buffer, 0, sizeof(buffer));
+        while (fread(buffer, 1, MAX_TITLE_SIZE, fp) != 0)
+            printf("%s\n", buffer);
+        fclose(fp);
+    }
 }
 
 void write_file(char* file_name){
