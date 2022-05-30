@@ -120,7 +120,7 @@ Node* insert_after(Node* cur_node, Node* new_node)
     cur_node->next = new_node;
     if(cur_node == _tail)
         _tail = new_node;
-    return new_node;
+    return _cur_node = new_node;
 }
 
 Node* append(size_t n, char new_data[])
