@@ -1,18 +1,22 @@
 #include <stdio.h>
-#include "linkedlist.h"
-#include "textfilewriter.h"
+#include <stdlib.h>
+#include <string.h>
+//#include "linkedlist.h"
+//#include "textfilewriter.h"
 
 int main() {
-  int n;					//곡 n개 입력받기 
+  int n;								//곡 n개 입력받기 
   scanf("%d", &n);
   char songlist[n][50];
   for (int i=0; i<n; i++) {
     scanf("%s", songlist[i]);
-    
+  }
+  
   char command[50];						//명령어 n번 입력받기
   scanf("%d", &n);
   
-  char song[50];	//***동적할당 사용하여 다시 구현
+  char* song;
+  song=(char*)malloc(sizeof(char)*50);
   char file[1000];
   int num; 
   
@@ -25,6 +29,7 @@ int main() {
     }
     else if (!strcmp(command, "del")) {
       scanf("%s", song);
+      delete_by_data(song);
       printf("Deleted %s\n", song);
     }
     else if (!strcmp(command, "list")) {
@@ -44,10 +49,14 @@ int main() {
       printf("Play\n");
     }
     else if (!strcmp(command,"clear")) {
-      printf("Clear\n");
+      clear();
+      printf("LinkedList is cleared!");
     }
     else if (!strcmp(command,"quit")) {
-      printf("Quit\n");
+      clear();
+      printf("LinkedList is cleared!");
+      printf("quit!");
+      return 0;
     }
     else if (!strcmp(command,"load")) {
       scanf("%s",file);
