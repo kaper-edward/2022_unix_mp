@@ -115,4 +115,3 @@ tags
 *.code-workspace
 
 build/
-googletest/

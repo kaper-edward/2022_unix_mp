@@ -10,9 +10,10 @@ jobs:
     timeout-minutes: 10
 
     steps:
-      - name: clone googletest
-        run: |
-          git clone https://github.com/google/googletest.git
+      - name: checkout
+        uses: actions/checkout@v2
+        with:
+          submodules: recursive
       - name: test
         run: |
           make
