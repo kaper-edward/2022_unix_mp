@@ -58,7 +58,6 @@ CMakeCache.txt
 CMakeFiles
 CMakeScripts
 Testing
-Makefile
 cmake_install.cmake
 install_manifest.txt
 compile_commands.json
@@ -92,11 +91,11 @@ tags
 
 ### VisualStudioCode ###
 **/.vscode/*
-!.vscode/settings.json
-!.vscode/tasks.json
-!.vscode/launch.json
-!.vscode/extensions.json
-!.vscode/*.code-snippets
+.vscode/settings.json
+.vscode/tasks.json
+.vscode/launch.json
+.vscode/extensions.json
+.vscode/*.code-snippets
 
 # Local History for Visual Studio Code
 .history/
@@ -114,3 +113,6 @@ tags
 
 # Ignore code-workspaces
 *.code-workspace
+
+build/
+googletest/
