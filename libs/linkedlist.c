@@ -29,7 +29,14 @@ size_t size()
 
 void print()
 {
-    print_file(stdout);
+    Node* it = _head;
+
+    printf("LinkedList [ ");
+    while(it -> next != NULL){
+        printf("%s ",it->next->data);
+        it = it->next;
+    }
+    printf("]\n");
 }
 
 void print_file(FILE* stream)

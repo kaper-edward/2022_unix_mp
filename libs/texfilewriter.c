@@ -28,7 +28,7 @@ void write_file(char* file_name){
 
     if( (fp=fopen(file_name, "a")) != NULL){    //혹시 모르니까 덧붙이기로
         //memset(buffer,0,sizeof(buffer));        //0으로 초기화 시킨후 입력 : 문자열 마지막 0때문에
-        while(it == NULL){
+        while(it != NULL){
             char* buffer = (char*)malloc(sizeof(char*)*(MAX_TITLE_SIZE+1));
             char c[2] = "\n";
             buffer = strcat(it->data,c);

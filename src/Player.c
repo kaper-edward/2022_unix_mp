@@ -1,39 +1,49 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-//#include "linkedlist.h"
-//#include "textfilewriter.h"
+#include "../include/linkedlist.h"
+#include "../include/textfilewriter.h"
 
 int main() {
-  int n;								//곡 n개 입력받기 
-  scanf("%d", &n);
-  char songlist[n][50];
-  for (int i=0; i<n; i++) {
-    scanf("%s", songlist[i]);
+  //처음 곡 songNum개 연결리스트에 입력
+  int song_num;
+  scanf("%d", &song_num);
+  
+  for (int i=0; i<song_num; i++) {
+    char* song_name = (char*)malloc(sizeof(char)*MAX_TITLE_SIZE);  //공간 넉넉하게 잡고
+    scanf("%s",song_name);
+    append_left(MAX_TITLE_SIZE,song_name);
   }
   
+  //명령어 별 처리
   char command[50];						//명령어 n번 입력받기
+  int n;
   scanf("%d", &n);
   
-  char* song;
-  song=(char*)malloc(sizeof(char)*50);
-  char file[1000];
+
+  char* file_name = "term.txt";
   int num; 
   
+  Node* it;
+
   for (int i=0; i<n; i++) {
   	scanf("%s", command);
   	
-  	if (!strcmp(command, "add")) {		//명령어별 처리 
+  	if (!strcmp(command, "add")) {		//add
+      char* song;
+      song=(char*)malloc(sizeof(char)*MAX_TITLE_SIZE);
   		scanf("%s", song);
+      append_left(sizeof(song),song);
   		printf("Added %s\n", song);
     }
-    else if (!strcmp(command, "del")) {
-      scanf("%s", song);
+    else if (!strcmp(command, "del")) { //del
+      char* song;
+      song=(char*)malloc(sizeof(char)*MAX_TITLE_SIZE);
       delete_by_data(song);
       printf("Deleted %s\n", song);
     }
-    else if (!strcmp(command, "list")) {
-      printf("List\n");
+    else if (!strcmp(command, "list")) { //list
+      print();
     }
     else if (!strcmp(command,"next")) {
       printf("Next\n");
