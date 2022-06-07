@@ -11,3 +11,4 @@ void read_file(char* file_name);
 
 void write_file(char* file_name);
 
+#endif
