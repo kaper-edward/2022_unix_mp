@@ -79,7 +79,7 @@ void command_add()
 void command_del()
 {
 	scanf("%s", buffer);
-	delete(buffer);
+	delete_by_data(buffer);
 }
 
 void command_list()
