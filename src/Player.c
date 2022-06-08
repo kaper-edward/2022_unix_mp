@@ -1,80 +1,137 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
 #include "../include/linkedlist.h"
 #include "../include/textfilewriter.h"
+#include <stdio.h>
+#include <string.h>
 
-int main() {
-  //처음 곡 songNum개 연결리스트에 입력
-  int song_num;
-  scanf("%d", &song_num);
-  
-  for (int i=0; i<song_num; i++) {
-    char* song_name = (char*)malloc(sizeof(char)*MAX_TITLE_SIZE);  //공간 넉넉하게 잡고
-    scanf("%s",song_name);
-    append_left(MAX_TITLE_SIZE,song_name);
-  }
-  
-  //명령어 별 처리
-  char command[50];						//명령어 n번 입력받기
-  int n;
-  scanf("%d", &n);
-  
+typedef struct Command
+{
+	const char* name;
+	void (*run)();
+}Command;
 
-  char* file_name = "term.txt";
-  int num; 
-  
-  Node* it;
+void command_add();
+void command_del();
+void command_list();
+void command_next();
+void command_prev();
+void command_move();
+void command_play();
+void command_clear();
+void command_quit();
+void command_load();
+void command_save();
 
-  for (int i=0; i<n; i++) {
-  	scanf("%s", command);
-  	
-  	if (!strcmp(command, "add")) {		//add
-      char* song;
-      song=(char*)malloc(sizeof(char)*MAX_TITLE_SIZE);
-  		scanf("%s", song);
-      append_left(sizeof(song),song);
-  		printf("Added %s\n", song);
-    }
-    else if (!strcmp(command, "del")) { //del
-      char* song;
-      song=(char*)malloc(sizeof(char)*MAX_TITLE_SIZE);
-      delete_by_data(song);
-      printf("Deleted %s\n", song);
-    }
-    else if (!strcmp(command, "list")) { //list
-      print();
-    }
-    else if (!strcmp(command,"next")) {
-      printf("Next\n");
-    }
-    else if (!strcmp(command,"prev")) {
-      printf("Prev\n");
-    }
-    else if (!strcmp(command,"move")) {
-      scanf("%s",num);
-      printf("Moved %d\n");
-    }
-    else if (!strcmp(command,"play")) {
-      printf("Play\n");
-    }
-    else if (!strcmp(command,"clear")) {
-      clear();
-      printf("LinkedList is cleared!");
-    }
-    else if (!strcmp(command,"quit")) {
-      clear();
-      printf("LinkedList is cleared!");
-      printf("quit!");
-      return 0;
-    }
-    else if (!strcmp(command,"load")) {
-      scanf("%s",file);
-      printf("Created playlist\n");
-    }
-    else if (!strcmp(command,"save")) {
-      scanf("%s",file);
-      printf("Saved songs to file\n");
-    }
-  }
+static char buffer[256];
+static Node* current_node;
+
+void add_initial_musics()
+{
+	int N;
+	scanf("%d", &N);
+	while(N--) command_add();
+}
+
+void process_commands()
+{
+	static Command commands[] = {
+		{ "add", command_add },
+		{ "del", command_del },
+		{ "list", command_list },
+		{ "next", command_next },
+		{ "prev", command_prev },
+		{ "move", command_move },
+		{ "play", command_play },
+		{ "clear", command_clear },
+		{ "quit", command_quit },
+		{ "load", command_load },
+		{ "save", command_save },
+	};
+	size_t i;
+	size_t commands_end = sizeof(commands)/sizeof(*commands);
+
+	int M;
+	scanf("%d", &M);
+	while(M--){
+		scanf("%s", buffer);
+		for(i=0; i!=commands_end; ++i)
+			if(strcmp(commands[i].name, buffer) == 0){
+				commands[i].run();
+				break;
+			}
+
+		if(i == commands_end)
+			puts("Unknown command");
+	}
+}
+
+int main()
+{
+	add_initial_musics();
+	process_commands();
+}
+
+void command_add()
+{
+	scanf("%s", buffer);
+	Node* p = current_node = append_left(256, buffer);
+}
+
+void command_del()
+{
+	scanf("%s", buffer);
+	delete_by_data(buffer);
+}
+
+void command_list()
+{
+	print();
+}
+
+void command_next()
+{
+	current_node = next();
+}
+
+void command_prev()
+{
+	current_node = prev();
+}
+
+void command_move()
+{
+	int pos;
+	scanf("%d", &pos);
+	Node* p = current_node = insert_after(get_node(pos), current_node);
+}
+
+void command_play()
+{
+	printf("%s is now playing!\n", current_node->data);
+}
+
+void command_clear()
+{
+	puts("LinkedList is cleared!");
+	clear();
+}
+
+#include "stdlib.h"
+
+void command_quit()
+{
+	command_clear();
+	puts("quit!");
+	exit(0);
+}
+
+void command_load()
+{
+	scanf("%s", buffer);
+	read_file(buffer);
+}
+
+void command_save()
+{
+	scanf("%s", buffer);
+	write_file(buffer);
 }
